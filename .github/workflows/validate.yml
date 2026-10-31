@@ -23,4 +23,5 @@ jobs:
       - uses: hacs/action@main
         with:
           category: integration
-          ignore: brands
+          # No upstream license yet; drop "license" once a LICENSE file is added.
+          ignore: brands license
