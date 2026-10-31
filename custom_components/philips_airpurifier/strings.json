@@ -4,11 +4,15 @@
       "user": {
         "title": "Philips air purifier",
         "description": "Enter the IP address of a Philips purifier that uses the encrypted HTTP protocol (e.g. AC2729, AC2889, AC3829). Give the device a fixed DHCP lease.",
-        "data": { "host": "Host" }
+        "data": {
+          "host": "Host"
+        }
       },
       "reconfigure": {
         "title": "Change address",
-        "data": { "host": "Host" }
+        "data": {
+          "host": "Host"
+        }
       }
     },
     "error": {
@@ -24,7 +28,9 @@
   "options": {
     "step": {
       "init": {
-        "data": { "scan_interval": "Polling interval (seconds)" }
+        "data": {
+          "scan_interval": "Polling interval (seconds)"
+        }
       }
     }
   },
@@ -36,6 +42,28 @@
     "deprecated_yaml_import_failed": {
       "title": "Philips AirPurifier YAML import failed",
       "description": "The purifier at {host} from configuration.yaml could not be reached, so it was not imported. Make sure it is online and restart Home Assistant, or add it under Settings → Devices & services and remove the YAML entry."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "allergen_index": {
+        "name": "Allergen index"
+      },
+      "water_level": {
+        "name": "Water level"
+      },
+      "pre_filter": {
+        "name": "Pre-filter cleaning"
+      },
+      "hepa_filter": {
+        "name": "HEPA filter"
+      },
+      "carbon_filter": {
+        "name": "Active carbon filter"
+      },
+      "wick_filter": {
+        "name": "Wick filter"
+      }
     }
   }
 }

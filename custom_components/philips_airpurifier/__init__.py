@@ -9,7 +9,7 @@ from homeassistant.exceptions import ConfigEntryNotReady
 from .client import PhilipsAirClient, PhilipsError
 from .coordinator import PhilipsConfigEntry, PhilipsCoordinator
 
-PLATFORMS: list[Platform] = [Platform.FAN]
+PLATFORMS: list[Platform] = [Platform.FAN, Platform.SENSOR]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: PhilipsConfigEntry) -> bool:

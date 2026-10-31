@@ -18,13 +18,12 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.data_entry_flow import FlowResultType
 from homeassistant.helpers import config_validation as cv, entity_platform
 from homeassistant.helpers import issue_registry as ir
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC, DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
-from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import *  # noqa: F403  pylint: disable=wildcard-import,unused-wildcard-import
 from .coordinator import PhilipsConfigEntry, PhilipsCoordinator
+from .entity import PhilipsEntity
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -136,10 +135,9 @@ def _find_key(value_map: dict, search_value: Any) -> Any:
     return None
 
 
-class PhilipsAirPurifierFan(CoordinatorEntity[PhilipsCoordinator], FanEntity):
+class PhilipsAirPurifierFan(PhilipsEntity, FanEntity):
     """Philips air purifier fan entity."""
 
-    _attr_has_entity_name = True
     _attr_name = None
     _attr_icon = DEFAULT_ICON
     _attr_preset_modes = SUPPORTED_PRESET_LIST
@@ -151,19 +149,8 @@ class PhilipsAirPurifierFan(CoordinatorEntity[PhilipsCoordinator], FanEntity):
 
     def __init__(self, coordinator: PhilipsCoordinator) -> None:
         super().__init__(coordinator)
-        mac = coordinator.wifi.get(PHILIPS_MAC_ADDRESS) or coordinator.config_entry.unique_id
-        self._model = str(coordinator.firmware.get(PHILIPS_MODEL_NAME, "")).replace("_", "/") or None
         # Same unique_id as the old YAML platform, so existing entities are reused.
-        self._attr_unique_id = mac
-        self._attr_device_info = DeviceInfo(
-            identifiers={(DOMAIN, coordinator.config_entry.unique_id or mac)},
-            connections={(CONNECTION_NETWORK_MAC, mac)},
-            manufacturer=MANUFACTURER,
-            model=self._model,
-            name=coordinator.config_entry.title,
-            sw_version=coordinator.firmware.get("version"),
-            configuration_url=f"http://{coordinator.client.host}",
-        )
+        self._attr_unique_id = self._mac
 
         self._fan_speed: str | None = None
         self._preset_mode: str | None = None

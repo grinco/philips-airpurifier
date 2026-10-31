@@ -45,6 +45,21 @@ These purifiers sometimes stop answering. The integration recovers on its own:
    keeps retrying the setup with a growing delay. The entity comes back when the device answers.
 
 ---
+## Sensors
+
+Created for each value the device reports (models without a humidifier get no humidity/water/wick sensors):
+
+| Sensor | Unit | Notes |
+| ------ | ---- | ----- |
+| PM2.5 | µg/m³ | |
+| Allergen index | – | 1–12 |
+| Temperature | °C | humidifier models |
+| Humidity | % | humidifier models |
+| Water level | % | humidifier models |
+| Pre-filter cleaning, HEPA filter, Active carbon filter, Wick filter | h | diagnostic: hours until clean/replace |
+
+The same values are also kept as attributes of the fan entity, so existing templates keep working.
+
 ## Fan preset modes:
 
 - Auto
