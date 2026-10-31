@@ -7,6 +7,7 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers import entity_registry as er
 
 from custom_components.philips_airpurifier.const import DOMAIN
+from custom_components.philips_airpurifier.sensor import MICROGRAMS_PER_CUBIC_METER
 
 from .conftest import add_entry
 
@@ -39,7 +40,7 @@ async def test_sensors_ac2889(hass: HomeAssistant, device) -> None:
     }
     pm = hass.states.get("sensor.ac2889_10_pm2_5")
     assert pm.state == "3"
-    assert pm.attributes["unit_of_measurement"] == "µg/m³"
+    assert pm.attributes["unit_of_measurement"] == MICROGRAMS_PER_CUBIC_METER
     assert pm.attributes["device_class"] == "pm25"
 
 

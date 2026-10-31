@@ -13,13 +13,21 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.const import (
-    CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
     PERCENTAGE,
     EntityCategory,
     UnitOfTemperature,
     UnitOfTime,
 )
 from homeassistant.core import HomeAssistant
+
+try:  # newer Home Assistant releases
+    from homeassistant.const import UnitOfDensity
+
+    MICROGRAMS_PER_CUBIC_METER = UnitOfDensity.MICROGRAMS_PER_CUBIC_METER
+except ImportError:  # older releases
+    from homeassistant.const import (
+        CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as MICROGRAMS_PER_CUBIC_METER,
+    )
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
@@ -53,7 +61,7 @@ SENSORS: tuple[PhilipsSensorDescription, ...] = (
         key=PHILIPS_PM25,
         source=_status,
         device_class=SensorDeviceClass.PM25,
-        native_unit_of_measurement=CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
+        native_unit_of_measurement=MICROGRAMS_PER_CUBIC_METER,
         state_class=SensorStateClass.MEASUREMENT,
     ),
     PhilipsSensorDescription(
