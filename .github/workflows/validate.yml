@@ -23,5 +23,6 @@ jobs:
       - uses: hacs/action@main
         with:
           category: integration
-          # No upstream license yet; drop "license" once a LICENSE file is added.
+          # LICENSE is scoped to this fork's changes (upstream code is unlicensed, see
+          # marlub/philips-airpurifier#2). Drop "license" once the whole project is MIT.
           ignore: brands license

@@ -140,3 +140,11 @@ python -m pytest
 ```
 
 GitHub Actions runs the tests against the oldest supported and the latest Home Assistant release, plus `hassfest` and HACS validation, on every push and weekly.
+
+---
+## License
+
+Partially licensed. Changes made in this fork since 3.0 (Vadim Grinco) are MIT licensed. Code inherited from the earlier
+philips-airpurifier projects was published without a license and is not covered; see [LICENSE](LICENSE) for the exact
+scope. Licensing the whole project under MIT has been requested in
+[marlub/philips-airpurifier#2](https://github.com/marlub/philips-airpurifier/issues/2).
