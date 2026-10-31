@@ -1,16 +1,29 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
 
-## Breaking changes:
+## Supported devices
 
-- Custom service `philips_airpurifier.set_mode` is replaced by `fan.set_preset_mode` service
-- `fan.set_speed` and `fan.set_percentage` no longer supported
-- Presets `Bacteria` and `Night` dropped
-- Presets `Auto Mode`, `Allergen Mode`, `Sleep Mode` renamed
+Philips purifiers that use the **encrypted HTTP protocol** (`/di/v1/...` on port 80),
+e.g. AC2729, AC2889, AC3829. Newer CoAP-only models are not supported.
+
+## Breaking changes in 3.0.0
+
+- Set up from the UI; YAML configuration is deprecated (imported automatically, see below)
+- Requires Home Assistant 2025.1 or newer
+- The integration folder is now `custom_components/philips_airpurifier` (must match the domain)
+- Custom services now take a `target` like any other entity service
+- `pycryptodome` is no longer required (uses the `cryptography` package shipped with Home Assistant)
+- Preset `Bacteria` is back for devices that report it
 
 ---
-## Setup:
+## Setup
 
-Add the following to your `configuration.yaml`:
+**Settings → Devices & services → Add integration → Philips AirPurifier**, then enter the
+IP address of the purifier. Give the purifier a fixed DHCP lease. You can change the
+address later with **Reconfigure** and the polling interval (default 30 s) under **Configure**.
+
+### Migrating from YAML
+
+If you still have
 
 ```yaml
 fan:
@@ -18,13 +31,18 @@ fan:
   host: 192.168.0.17
 ```
 
-### Configuration variables:
+in `configuration.yaml`, it is imported into a UI config entry on the next restart and a
+repair notice asks you to remove the YAML block. The device must be reachable during
+that restart.
 
-| Field    | Value                 | Necessity  | Description                  |
-| -------- | --------------------- | ---------- | ---------------------------- |
-| platform | `philips_airpurifier` | _Required_ | The platform name.           |
-| host     | 192.168.0.17          | _Required_ | IP address of your Purifier. |
-| name     | Philips Air Purifier  | Optional   | Name of the Fan.             |
+### Automatic recovery
+
+These purifiers sometimes stop answering. The integration recovers on its own:
+
+1. Every failed poll drops the encryption session and reconnects with a new key exchange.
+2. After 3 failed polls in a row, the integration reloads itself.
+3. While the purifier stays offline, the entity shows *unavailable* and Home Assistant
+   keeps retrying the setup with a growing delay. The entity comes back when the device answers.
 
 ---
 ## Fan preset modes:
@@ -32,6 +50,7 @@ fan:
 - Auto
 - Allergen
 - Sleep
+- Bacteria (if supported)
 - Speed 1
 - Speed 2
 - Speed 3

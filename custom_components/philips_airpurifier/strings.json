@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Philips air purifier",
+        "description": "Enter the IP address of a Philips purifier that uses the encrypted HTTP protocol (e.g. AC2729, AC2889, AC3829). Give the device a fixed DHCP lease.",
+        "data": { "host": "Host" }
+      },
+      "reconfigure": {
+        "title": "Change address",
+        "data": { "host": "Host" }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to the purifier. Check the address and that the device is on the network."
+    },
+    "abort": {
+      "already_configured": "This purifier is already configured.",
+      "cannot_connect": "Could not connect to the purifier.",
+      "reconfigure_successful": "The address was updated.",
+      "wrong_device": "That address belongs to a different purifier."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": { "scan_interval": "Polling interval (seconds)" }
+      }
+    }
+  },
+  "issues": {
+    "deprecated_yaml": {
+      "title": "Philips AirPurifier YAML configuration is deprecated",
+      "description": "The purifier at {host} was imported into the UI. Remove the `fan:` entry with `platform: philips_airpurifier` from configuration.yaml and restart Home Assistant."
+    },
+    "deprecated_yaml_import_failed": {
+      "title": "Philips AirPurifier YAML import failed",
+      "description": "The purifier at {host} from configuration.yaml could not be reached, so it was not imported. Make sure it is online and restart Home Assistant, or add it under Settings → Devices & services and remove the YAML entry."
+    }
+  }
+}

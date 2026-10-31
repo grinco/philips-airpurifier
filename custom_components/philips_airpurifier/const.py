@@ -2,7 +2,13 @@
 
 # Integration setup
 DOMAIN = 'philips_airpurifier'
-DATA_PHILIPS_FANS = 'fan.philips_airpurifier'
+MANUFACTURER = 'Philips'
+
+# Polling / recovery
+DEFAULT_SCAN_INTERVAL = 30  # seconds
+MIN_SCAN_INTERVAL = 10
+# Reload the config entry after this many consecutive failed polls
+FAILURES_BEFORE_RELOAD = 3
 
 # Integration defaults
 DEFAULT_NAME = 'Philips AirPurifier'
@@ -77,6 +83,7 @@ PHILIPS_SPEED_TURBO = 't'
 PHILIPS_MODE_AUTO = 'P'
 PHILIPS_MODE_ALLERGEN = 'A'
 PHILIPS_MODE_SLEEP = 'S'
+PHILIPS_MODE_BACTERIA = 'B'
 PHILIPS_MODE_MANUAL = 'M'
 PHILIPS_FUNCTION_PURIFICATION = 'P'
 PHILIPS_FUNCTION_BOTH = 'PH'
@@ -98,17 +105,20 @@ SPEED_MAP = {
 MODE_AUTO = 'Auto'
 MODE_ALLERGEN = 'Allergen'
 MODE_SLEEP = 'Sleep'
+MODE_BACTERIA = 'Bacteria'
 
 MODE_MAP = {
     PHILIPS_MODE_AUTO: MODE_AUTO,
     PHILIPS_MODE_ALLERGEN: MODE_ALLERGEN,
     PHILIPS_MODE_SLEEP: MODE_SLEEP,
+    PHILIPS_MODE_BACTERIA: MODE_BACTERIA,
 }
 
 SUPPORTED_PRESET_LIST = [
     MODE_AUTO,
     MODE_ALLERGEN,
     MODE_SLEEP,
+    MODE_BACTERIA,
     SPEED_1,
     SPEED_2,
     SPEED_3,

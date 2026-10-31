@@ -1,9 +1,0 @@
-{
-  "domain": "philips_airpurifier",
-  "name": "Philips AirPurifier",
-  "documentation": "https://github.com/marlub/philips-airpurifier",
-  "dependencies": [],
-  "codeowners": ["@marlub", "@xMrVizzy"],
-  "requirements": ["pycryptodome"],
-  "version": "2.0.0"
-}

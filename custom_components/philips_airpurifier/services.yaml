@@ -1,0 +1,97 @@
+set_function:
+  name: Set function
+  description: Set the device function (if supported).
+  target:
+    entity:
+      integration: philips_airpurifier
+      domain: fan
+  fields:
+    function:
+      name: Function
+      required: true
+      example: "Purification & Humidification"
+      selector:
+        select:
+          options:
+            - "Purification"
+            - "Purification & Humidification"
+
+set_target_humidity:
+  name: Set target humidity
+  description: Set the device target humidity (if supported).
+  target:
+    entity:
+      integration: philips_airpurifier
+      domain: fan
+  fields:
+    humidity:
+      name: Humidity
+      required: true
+      example: 40
+      selector:
+        select:
+          options: ["40", "50", "60"]
+
+set_light_brightness:
+  name: Set light brightness
+  description: Set the light brightness. Level 0 turns the display light off.
+  target:
+    entity:
+      integration: philips_airpurifier
+      domain: fan
+  fields:
+    level:
+      name: Level
+      required: true
+      example: 50
+      selector:
+        select:
+          options: ["0", "25", "50", "75", "100"]
+
+set_child_lock:
+  name: Set child lock
+  description: Turn the child lock on or off.
+  target:
+    entity:
+      integration: philips_airpurifier
+      domain: fan
+  fields:
+    lock:
+      name: Lock
+      required: true
+      example: true
+      selector:
+        boolean:
+
+set_timer:
+  name: Set timer
+  description: Set the off timer (0 disables it).
+  target:
+    entity:
+      integration: philips_airpurifier
+      domain: fan
+  fields:
+    hours:
+      name: Hours
+      required: true
+      example: 5
+      selector:
+        number:
+          min: 0
+          max: 12
+          unit_of_measurement: h
+
+set_display_light:
+  name: Set display light
+  description: Turn the display light on or off.
+  target:
+    entity:
+      integration: philips_airpurifier
+      domain: fan
+  fields:
+    light:
+      name: Light
+      required: true
+      example: true
+      selector:
+        boolean:

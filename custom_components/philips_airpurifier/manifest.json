@@ -1,0 +1,13 @@
+{
+  "domain": "philips_airpurifier",
+  "name": "Philips AirPurifier",
+  "codeowners": ["@grinco", "@marlub", "@xMrVizzy"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/grinco/philips-airpurifier",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/grinco/philips-airpurifier/issues",
+  "requirements": [],
+  "version": "3.0.0"
+}
