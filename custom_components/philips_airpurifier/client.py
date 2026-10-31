@@ -49,7 +49,12 @@ class PhilipsAirClient:
     def _get_session(self) -> aiohttp.ClientSession:
         if self._session is None or self._session.closed:
             self._session = aiohttp.ClientSession(
-                connector=aiohttp.TCPConnector(force_close=True, limit=1),
+                connector=aiohttp.TCPConnector(
+                    force_close=True,
+                    limit=1,
+                    # Plain getaddrinfo: no c-ares channel per (re)connect.
+                    resolver=aiohttp.ThreadedResolver(),
+                ),
                 timeout=self._timeout,
             )
         return self._session

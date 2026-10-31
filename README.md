@@ -1,4 +1,4 @@
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs) [![Tests](https://github.com/grinco/philips-airpurifier/actions/workflows/tests.yml/badge.svg)](https://github.com/grinco/philips-airpurifier/actions/workflows/tests.yml) [![Validate](https://github.com/grinco/philips-airpurifier/actions/workflows/validate.yml/badge.svg)](https://github.com/grinco/philips-airpurifier/actions/workflows/validate.yml)
 
 ## Supported devices
 
@@ -128,3 +128,15 @@ Set the device display light on or off
 | --------- | ------------------- | ---------- | -------------------------------------------- |
 | entity_id | `"fan.living_room"` | _Required_ | Name(s) of the entities to set display light |
 | light     | `true`              | _Required_ | true or false                                |
+
+---
+## Development
+
+Tests run against a fake purifier that speaks the encrypted HTTP protocol (`tests/fake_device.py`), so no hardware is needed:
+
+```bash
+pip install pytest-homeassistant-custom-component
+python -m pytest
+```
+
+GitHub Actions runs the tests against the oldest supported and the latest Home Assistant release, plus `hassfest` and HACS validation, on every push and weekly.
