@@ -144,7 +144,6 @@ GitHub Actions runs the tests against the oldest supported and the latest Home A
 ---
 ## License
 
-Partially licensed. Changes made in this fork since 3.0 (Vadim Grinco) are MIT licensed. Code inherited from the earlier
-philips-airpurifier projects was published without a license and is not covered; see [LICENSE](LICENSE) for the exact
-scope. Licensing the whole project under MIT has been requested in
-[marlub/philips-airpurifier#2](https://github.com/marlub/philips-airpurifier/issues/2).
+MIT, see [LICENSE](LICENSE). The upstream project was licensed under MIT in
+[marlub/philips-airpurifier@dafee1e](https://github.com/marlub/philips-airpurifier/commit/dafee1ea1a4ff3c8575358973d26bdc8571cae54)
+(closing [#2](https://github.com/marlub/philips-airpurifier/issues/2)).

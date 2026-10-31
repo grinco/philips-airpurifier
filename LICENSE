@@ -1,21 +1,6 @@
-SCOPE OF THIS LICENSE
-
-The MIT license below applies only to changes made by Vadim Grinco in this
-repository, starting with commit c6867cb ("Modernise integration: config
-flow, async client, auto-recovery") on 2026-10-31, and to files he created
-(including client.py, coordinator.py, config_flow.py, entity.py, sensor.py
-and everything under tests/ and .github/).
-
-Code that came from the earlier philips-airpurifier projects
-(tamasszadvari/philips-airpurifier, marlub/philips-airpurifier) was published
-without a license and remains the property of its authors. It is NOT covered
-by this license. A request to license it under MIT is open at
-https://github.com/marlub/philips-airpurifier/issues/2
-
--------------------------------------------------------------------------------
-
 MIT License
 
+Copyright (c) 2019-2026 Philips Air Purifier contributors
 Copyright (c) 2026 Vadim Grinco
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
