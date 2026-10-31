@@ -5,7 +5,7 @@
 Philips purifiers that use the **encrypted HTTP protocol** (`/di/v1/...` on port 80),
 e.g. AC2729, AC2889, AC3829. Newer CoAP-only models are not supported.
 
-## Breaking changes in 3.0.0
+## Breaking changes in 3.0
 
 - Set up from the UI; YAML configuration is deprecated (imported automatically, see below)
 - Requires Home Assistant 2025.1 or newer
